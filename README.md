@@ -5,6 +5,10 @@
 yarn install
 ```
 
+### Reference
+
+1. Icon : [mdi](https://material.io/tools/icons/?style=baseline)
+
 ### Compiles and hot-reloads for development
 ```
 yarn run serve

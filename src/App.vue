@@ -1,28 +1,29 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+v-app
+  left-menu
+  v-toolbar(app='')
+  v-content
+    v-container(fluid='')
+      router-view
+  v-footer(app='')
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import leftMenu from '@/roots/Navigation';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    'left-menu': leftMenu,
+  },
+  data() {
+    return {};
+  },
+  created() {
+    if (process.env.VUE_APP_DEBUG) {
+      window.Vue = this;
+    }
+  },
+  methods: {},
+};
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
