@@ -38,5 +38,6 @@ module.exports = {
     },
     globals: {
         require: true,
+        resolve: true,
     },
 };
