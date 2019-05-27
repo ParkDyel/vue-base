@@ -1,20 +1,24 @@
 <template lang="pug">
 v-app
   left-menu
-  v-toolbar(app='')
+  tool-bar
   v-content
     v-container(fluid='')
       router-view
-  v-footer(app='')
+  footer-bar
 </template>
 
 <script>
 import leftMenu from '@/roots/Navigation';
+import toolBar from '@/roots/ToolBar';
+import footerBar from '@/roots/FooterBar';
 
 export default {
   name: 'App',
   components: {
     'left-menu': leftMenu,
+    'tool-bar': toolBar,
+    'footer-bar': footerBar,
   },
   data() {
     return {};
@@ -24,6 +28,11 @@ export default {
       window.Vue = this;
     }
   },
-  methods: {},
 };
 </script>
+
+<style>
+.v-content {
+  margin-left: 80px;
+}
+</style>

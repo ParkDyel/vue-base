@@ -1,15 +1,13 @@
 <template lang="pug">
-v-navigation-drawer(permanent temporary fixed clipped dark disable-route-watcher value :mini-variant='isFold' @click='toggleMenu(!isFold)')
-  v-toolbar(flat='' @click='toggleMenu(!isFold)')
+v-navigation-drawer(permanent :temporary='!isFold' fixed clipped dark disable-route-watcher value :mini-variant='isFold')
+  v-toolbar(flat='')
     v-list
-      v-list-tile.title
+      v-list-tile.title(@click='toggleMenu(!isFold)')
         v-list-tile-action
-          v-icon {{ 'home' }}
-        v-list-tile-content
-          v-list-tile-title My App
+          v-icon {{ 'toc' }}
   v-divider
   v-list.pt-0(dense='')
-    v-list-tile(v-for='menu in menus' :key='menu.title' @click.stop='toggleMenu(!isFold)')
+    v-list-tile(v-for='menu in menus' :key='menu.title' :id='menu.id' @click.stop='goToName(menu.id)')
       v-list-tile-action
         v-icon {{ menu.icon }}
       v-list-tile-content
@@ -22,12 +20,13 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('settings');
 
 export default {
+  name: 'navigation',
   data() {
     return {
       menus: [
-        { title: 'Home', icon: 'dashboard' },
-        { title: 'About', icon: 'question_answer' },
-        { title: 'Account', icon: 'account_box' },
+        { id: 'home', title: 'Home', icon: 'dashboard' },
+        { id: 'about', title: 'About', icon: 'question_answer' },
+        { id: 'account', title: 'Account', icon: 'account_box' },
       ],
     };
   },
@@ -36,13 +35,16 @@ export default {
       isFold: state => state.isFoldMainMenu,
     }),
   },
-  // created() {
-  //   this.$store.settings.state
-  // },
   methods: {
     ...mapMutations({
       toggleMenu: 'setFoldMainMenu',
     }),
+    goToName($_name) {
+      this.$_debug_console_log(`name : ${$_name}`);
+      this.$router.push({
+        name: $_name,
+      });
+    },
   },
 };
 </script>
