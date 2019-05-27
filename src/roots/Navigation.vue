@@ -7,7 +7,7 @@ v-navigation-drawer(permanent :temporary='!isFold' fixed clipped dark disable-ro
           v-icon {{ 'toc' }}
   v-divider
   v-list.pt-0(dense='')
-    v-list-tile(v-for='menu in menus' :key='menu.title' :id='menu.id' @click.stop='goToName(menu.id)')
+    v-list-tile(v-for='menu in menus' :key='menu.title' :id='menu.id' @click.stop='clickMenu(menu.id)')
       v-list-tile-action
         v-icon {{ menu.icon }}
       v-list-tile-content
@@ -17,7 +17,7 @@ v-navigation-drawer(permanent :temporary='!isFold' fixed clipped dark disable-ro
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapMutations } = createNamespacedHelpers('settings');
+const vuexModuleSettings = createNamespacedHelpers('settings');
 
 export default {
   name: 'navigation',
@@ -31,14 +31,22 @@ export default {
     };
   },
   computed: {
-    ...mapState({
+    ...vuexModuleSettings.mapState({
       isFold: state => state.isFoldMainMenu,
     }),
   },
   methods: {
-    ...mapMutations({
+    ...vuexModuleSettings.mapMutations({
       toggleMenu: 'setFoldMainMenu',
+      toggleLoginModal: 'setLoginModal',
     }),
+    clickMenu($_name) {
+      if ($_name == 'account') {
+        this.toggleLoginModal(true);
+      } else {
+        return this.goToName($_name);
+      }
+    },
     goToName($_name) {
       this.$_debug_console_log(`name : ${$_name}`);
       this.$router.push({

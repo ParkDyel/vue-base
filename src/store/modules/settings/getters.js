@@ -1,7 +1,3 @@
-const getters = {
-  isFoldMainMenu: state => {
-    return state.isFoldMainMenu;
-  },
-};
+const getters = {};
 
 export { getters as default };
