@@ -1,9 +1,9 @@
 <template lang="pug">
-h1 Home
+h1 AboutPage
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'about',
 };
 </script>
