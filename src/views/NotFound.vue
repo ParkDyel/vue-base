@@ -4,7 +4,6 @@ h1 NotFound
 
 <script>
 export default {
-  name: "about",
-
+  name: 'not-found',
 };
 </script>
