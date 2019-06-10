@@ -5,7 +5,7 @@ axios.defaults.baseURL = process.env.VUE_APP_REST_SERVER_IP;
 export const METHODS = {
   GET: get,
   PUT: 'put',
-  POST: 'post',
+  POST: post,
   DEL: 'delete',
 };
 
@@ -15,6 +15,7 @@ export default function request($_methods, $_url, $_param) {
     return METHODS[$_methods]($_url, $_param).then(res => {
       return new Promise(resolve => {
         if (res.status == '200') {
+          res.err = false;
           resolve(res);
         } else {
           resolve({
@@ -41,4 +42,8 @@ function get($_url, $_param = {}) {
     delete $_param.root;
   }
   return axios.get(url, $_param);
+}
+
+function post($_url, $_param = {}) {
+  return axios.post($_url, $_param);
 }

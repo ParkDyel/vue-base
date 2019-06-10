@@ -4,6 +4,7 @@ import createLogger from 'vuex/dist/logger';
 import createPersistedState from 'vuex-persistedstate';
 
 import settings from './modules/settings';
+import userInfo from './modules/userInfo';
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ const debug = process.env.NODE_ENV !== 'production';
 export default new Vuex.Store({
   modules: {
     settings,
+    userInfo,
   },
   state: {},
   mutations: {},
