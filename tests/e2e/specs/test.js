@@ -5,7 +5,7 @@ describe('Navigation Test', () => {
     cy.visit('/');
     cy.screenshot('home');
     cy.get('#home').click();
-    cy.contains('home');
+    cy.contains('Home');
   });
   it('about', () => {
     cy.visit('/');

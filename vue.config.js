@@ -34,14 +34,14 @@ module.exports = {
         },
       }),
     );
-    // config.output.filename = 'js/[name].[chunkhash:6].js'
+    config.output.filename = 'js/[name].[hash:6].js';
     // config.output.chunkFilename = 'js/[name].[chunkhash:6].js'
   },
-  css: {
-    extract: {
-      filename: 'css/[name].[contenthash:6].css',
-    },
-  },
+  // css: {
+  //   extract: {
+  //     filename: 'css/[name].[contenthash:6].css',
+  //   },
+  // },
   pluginOptions: {
     webpackBundleAnalyzer: {
       openAnalyzer: false,

@@ -1,11 +1,11 @@
-import * as fn from './types';
+import * as fn from './type';
 
 const actions = {
   [fn.SET_USER_NAME]({ commit }, payload) {
-    if (payload.err == true) {
-      return false;
+    if (payload.err == false) {
+      commit(fn.SET_USER_NAME, payload.name);
+      return true;
     } else {
-      commit(actions.SET_USER_NAME, payload.name);
       return false;
     }
   },
